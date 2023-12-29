@@ -9,7 +9,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
-    <title>Landing Page</title>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    
     
 </head>
 <body class="font-poppins bg-gradient-to-r from-cyan-500 to-blue-500 text-gray-800">

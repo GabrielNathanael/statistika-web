@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\nilai;
+use Illuminate\Http\Request;
+use App\Exports\ScoresExport;
+use App\Imports\ScoresImport;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
+use MathPHP\Probability\Distribution\Continuous;
 
 class nilaiController extends Controller
 {
@@ -51,7 +55,7 @@ class nilaiController extends Controller
         $maxScore = $scores->max('nilai_siswa');
 
         // Menentukan jumlah kelas interval (bisa disesuaikan)
-        $jumlahKelas = 7;
+        $jumlahKelas = 10;
 
         // Menghitung lebar interval
         $intervalWidth = ceil(($maxScore - $minScore) / $jumlahKelas);
@@ -99,6 +103,10 @@ class nilaiController extends Controller
     public function calculateChiSqure(Request $request)
     {
 
+        // $request->validate([
+        //     'chi' => 'required|regex:/^\d+(\.\d{2})?$/',
+        // ]);
+
         $chi = DB::table('tb_zed')->where('z', substr($request->chi, 0, -1))->first();
         $lastChi    = substr($request->chi, -1);
         $result = '';
@@ -129,6 +137,90 @@ class nilaiController extends Controller
 
 
         return back()->with('success', $result);
+    }
+    
+    function normsdist($x)
+{
+    $distribution = new Continuous\Normal(0, 1); 
+    return $distribution->cdf($x); 
+}
+
+public function liliefors()
+{
+    $scores = nilai::all(); # sesuaikan dengan nama model
+    $scoresAverage = $scores->avg('nilai_siswa'); # sesuaikan dengan nama colom nilai
+    $scoresSTD = DB::table('nilai_ujian') # sesuaikan dengan table dan colom nilai
+        ->selectRaw('SQRT(SUM(POWER(nilai_siswa - ' . $scoresAverage . ', 2)) / (COUNT(nilai_siswa) - 1)) AS result')->first();
+
+    $sortedScores = $scores->pluck('nilai_siswa')->sort()->toArray();
+
+    $totalData = count($sortedScores);
+
+    $empiricalCumulativeProbability = [];
+
+    $cumulativeCount = 0;
+    foreach ($sortedScores as $value) {
+        $cumulativeCount++;
+        $empiricalCumulativeProbability[$value] = $cumulativeCount / $totalData;
+    }
+    //  return $empiricalCumulativeProbability;
+
+
+    $zScores = [];
+    foreach ($scores as $score) {
+        $scoreValue = $score->nilai_siswa;
+        $zScore = ($scoreValue - $scoresAverage) / $scoresSTD->result;
+        $normsdist = $this->normsdist($zScore);
+        $zScores[$score->id] = [
+            'scoreValue' => $scoreValue,
+            'zScore' => number_format($zScore, 5),
+            'normsdist' => number_format($normsdist, 5),
+            'empiricalCumulativeProbability' =>$empiricalCumulativeProbability[$scoreValue],
+            'fx' => abs($normsdist - $empiricalCumulativeProbability[$scoreValue]),
+        ];
+    }
+
+    return view('nilai.liliefors', compact('scores', 'zScores'));
+}
+
+public function export()
+{
+    return Excel::download(new ScoresExport, 'scores.xlsx');
+}
+
+public function import()
+{
+    Excel::import(new ScoresImport, request()->file('file'));
+
+    return redirect('/')->with('success', 'Success Import Scores');
+}
+
+public function ujiT()
+    {
+        $result = DB::table('ujit')->get();
+        $sumX1 = $result->sum('x1');
+        $sumX2 = $result->sum('x2');
+        $averageX1 = $result->avg('x1');
+        $averageX2 = $result->avg('x2');
+        $SD1 = DB::table('ujit')
+            ->selectRaw('SQRT(SUM(POWER(x1 - ' . $averageX1 . ', 2)) / (COUNT(x1) - 1)) AS result')->first();
+        $SD2 = DB::table('ujit')
+            ->selectRaw('SQRT(SUM(POWER(x2 - ' . $averageX2 . ', 2)) / (COUNT(x2) - 1)) AS result')->first();
+
+        $roundedSDX1 = round($SD1->result, 2);
+        $roundedSDX2 = round($SD2->result, 2);
+
+        $variance1 = DB::table('ujit')
+            ->selectRaw('SUM(POWER(x1 - ' . $averageX1 . ', 2)) / (COUNT(x1) - 1) AS result')
+            ->first();
+        $variance2 = DB::table('ujit')
+            ->selectRaw('SUM(POWER(x2 - ' . $averageX2 . ', 2)) / (COUNT(x2) - 1) AS result')
+            ->first();
+
+        $roundedVariance1 = round($variance1->result, 2);
+        $roundedVariance2 = round($variance2->result, 2);
+
+        return view('nilai.ujit', compact('result', 'sumX1', 'sumX2', 'averageX1', 'averageX2', 'roundedSDX1', 'roundedSDX2', 'roundedVariance1', 'roundedVariance2'));
     }
 }
 

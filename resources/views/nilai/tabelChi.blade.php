@@ -1,21 +1,11 @@
 @extends('layout.indexLayout')
 @section('content')
-
+<title>Chi Table</title>
     <div class="ml-16">
         <div class="container mx-auto px-12">
             <h1 class="font-poppins text-4xl font-semibold  mb-8 mt-10  text-white">Tabel Chi</h1>
             
-        <form action="{{route('chi')}}" method="post" >
-            @csrf
-            <input class="w-full py-2 rounded-md " type="text" name="chi" id="chi" placeholder="3.10">
-            <button class="py-2 rounded-md "type ="submit">Hitung</button>
-        </form>
-        @if (session()->has('success'))
-        <div class=" ">
-            {{ session('success') }}
-        </div>
-        @endif
-
+       
         </div>
         <div class="container mx-auto width-3/5 px-12 mt-4 bg-white py-6 rounded-md">
             <table id="myTable" class="table-auto pb-2 w-full bg-white shadow-lg rounded-lg border border-gray-300 ">
@@ -52,6 +42,20 @@
                     @endforeach
                 </tbody>
             </table>
-
+        <div>
+            <form action="{{route('chi')}}" method="post" >
+                @csrf
+                <input class="w-full py-2 rounded-md mt-4 mb-4 border-2 border-black" type="text" name="chi" id="chi" placeholder="3.10">
+                <button class="font-poppins bg-gradient-to-r from-green-200 to-blue-500 hover:from-blue-500 hover:to-green-200 hover:font-bold text-black font-semibold py-2 px-4 rounded border border-blue-700 mb-4 "type ="submit">Temukan</button>
+                {{-- @error('chi')
+                    {{ $message }}
+                @enderror --}}
+            </form>
+            @if (session()->has('success'))
+            <div class=" ">
+                {{ session('success') }}
+            </div>
+            @endif
+        </div>
     </div>
 @endsection

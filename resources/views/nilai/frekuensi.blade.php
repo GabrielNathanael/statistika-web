@@ -1,9 +1,9 @@
 @extends('layout.indexLayout')
 @section('content')
-
+<title>Distribusi Frekuensi</title>
     <div class="ml-16">
         <div class="container mx-auto px-12">
-            <h1 class="font-poppins text-4xl font-semibold  mb-8 mt-10  text-white">Data Bergolong</h1>
+            <h1 class="font-poppins text-4xl font-semibold  mb-8 mt-10  text-white">Distribusi Frekuensi</h1>
             
             
         </div>
@@ -13,7 +13,7 @@
                     <tr>
                         <th class="font-poppins px-6 py-3 border-b-2 border-gray-300 border-r-2 border-gray-300">No</th>
                         <th class="font-poppins px-6 py-3 border-b-2 border-gray-300 border-r-2 border-gray-300">Nilai</th>
-                        <th class="font-poppins px-6 py-3 border-b-2 border-gray-300 border-r-2 border-gray-300">Median</th>
+                        <th class="font-poppins px-6 py-3 border-b-2 border-gray-300 border-r-2 border-gray-300">Frekuensi</th>
                         
                     </tr>
                 </thead>

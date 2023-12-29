@@ -31,4 +31,11 @@ Route::delete('/nilai/{dataSiswa}/delete', [nilaiController::class, 'delete'])->
 Route::get('/nilai', [nilaiController::class, 'index'])->name('nilai.index');
 Route::get('/tabelChi', [nilaiController::class, 'getChiSqure']);
 Route::post('/tabelChi', [nilaiController::class, 'calculateChiSqure'])->name('chi');
+Route::get('/liliefors', [nilaiController::class, 'liliefors'])->name('liliefors'); #silahkan di sesuaikan
+Route::get('export/', [nilaiController::class, 'export']); #disesuaikan
 
+Route::get('/ujiT', [nilaiController::class, 'ujiT']);
+Route::get('import', function () {
+    return view('nilai.import');
+});
+Route::post('import/', [nilaiController::class, 'import'])->name('import');

@@ -1,5 +1,6 @@
 @extends('layout.indexLayout')
 @section('content')
+<title>Editting Data</title>
     <div class="container mx-auto px-4 py-8 w-3/5">
         <!-- Edit Section -->
         <h1 class="text-2xl font-bold text-white mb-4">Edit Data Nilai</h1>
@@ -12,7 +13,7 @@
                 <input type="text" id="nilai_siswa" name="nilai_siswa" placeholder="Contoh: 70" value="{{$dataSiswa->nilai_siswa}}" class="w-full p-2 border rounded">
             </div>
             <div class="text-center">
-                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">Update</button>
+                <button type="submit" class="font-poppins bg-gradient-to-r from-green-200 to-blue-500 hover:from-blue-500 hover:to-green-200 hover:font-bold text-black font-semibold py-2 px-4 rounded border border-blue-700 ">Update</button>
             </div>
         </form>
     </div>
