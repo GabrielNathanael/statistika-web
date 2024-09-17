@@ -1,9 +1,9 @@
 @extends('layout.indexLayout')
 @section('content')
-<title>Chi Table</title>
+<title>Tabel Z Chi Kuadrat</title>
     <div class="ml-16">
         <div class="container mx-auto px-12">
-            <h1 class="font-poppins text-4xl font-semibold  mb-8 mt-10  text-white">Tabel Chi</h1>
+            <h1 class="font-poppins text-4xl font-semibold  mb-8 mt-10  text-white">Tabel Z Chi Kuadrat</h1>
             
        
         </div>

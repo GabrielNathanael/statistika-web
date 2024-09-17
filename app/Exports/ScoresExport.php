@@ -14,7 +14,7 @@ class ScoresExport implements FromView
     public function view(): View
     {
         return view('nilai.export', [
-            'scores' => nilai::all() #disesuaikan
+            'nilai' => nilai::all() #disesuaikan
         ]);
     }
 }

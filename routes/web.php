@@ -39,3 +39,4 @@ Route::get('import', function () {
     return view('nilai.import');
 });
 Route::post('import/', [nilaiController::class, 'import'])->name('import');
+Route::get('/biserial', [nilaiController::class, 'biserial']);

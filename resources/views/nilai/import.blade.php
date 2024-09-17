@@ -2,7 +2,7 @@
 @section('content')
 <title>Import Page</title>
 <div class="mt-5 px-3 max-w-md mx-auto bg-white p-6 rounded-md shadow-md">
-    <h1 class="text-3xl font-bold mb-5">Import Data Score</h1>
+    <h1 class="text-3xl font-bold mb-5">Import Data Nilai</h1>
     <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
         @csrf
         <div>

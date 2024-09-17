@@ -6,10 +6,10 @@
      </tr>
     </thead>
     <tbody>
-     @foreach($scores as $score)
+     @foreach($nilai as $nilai)
      <tr>
       <td>{{ $loop->iteration }}</td>
-      <td>{{ $score->nilai_siswa }}</td>
+      <td>{{ $nilai->nilai_siswa }}</td>
      </tr>
      @endforeach
     </tbody>

@@ -3,7 +3,7 @@
 <title>Uji T Tabel</title>
     <div class="ml-16">
         <div class="container mx-auto px-12">
-            <h1 class="font-poppins text-4xl font-semibold  mb-8 mt-10  text-white">Uji T Tabel</h1>
+            <h1 class="font-poppins text-4xl font-semibold  mb-8 mt-10  text-white">Tabel Uji T </h1>
             
            
         </div>

@@ -1,6 +1,6 @@
 @extends('layout.indexLayout')
 @section('content')
-<title>Landing Page</title>
+<title>Data Tunggal</title>
     <div class="ml-16">
         <div class="container mx-auto px-12">
             <h1 class="font-poppins text-4xl font-semibold  mb-8 mt-10  text-white">Data Tunggal</h1>

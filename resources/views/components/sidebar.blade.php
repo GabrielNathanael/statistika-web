@@ -58,6 +58,13 @@ data-te-sidenav-position="absolute">
           >Uji T Tabel</a
         >
       </li>
+      <li class="relative">
+        <a href="/biserial"
+          class="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 pl-[3.4rem] pr-6 text-[0.78rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none "
+          data-te-sidenav-link-ref
+          >Point Biserial</a
+        >
+      </li>
     </ul>
   </li>
   <li class="relative">
@@ -87,12 +94,12 @@ data-te-sidenav-position="absolute">
         <a href="/tabelChi"
           class="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 pl-[3.4rem] pr-6 text-[0.78rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none "
           data-te-sidenav-link-ref
-          >Tabek Z Chi-Kuadrat</a
+          >Tabel Z Chi-Kuadrat</a
         >
         <a href="/liliefors"
           class="flex h-6 cursor-pointer items-center truncate rounded-[5px] py-4 pl-[3.4rem] pr-6 text-[0.78rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none "
           data-te-sidenav-link-ref
-          >Tabek Z Liliefors</a
+          >Tabel Z Liliefors</a
         >
       </li>
     </ul>
